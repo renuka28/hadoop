@@ -1,0 +1,57 @@
+show_views = show_views_file.map(split_show_views)
+show_channel = show_channel_file.filter(split_show_channel).map(split_show_channel)
+channel_views = joined_dataset.map(extract_channel_views)
+channel_views.reduceByKey(sum_channel_views).collect()
+
+--------- ************* Output ******************---------------
+
+In [185]: clear
+
+
+In [186]: def split_show_views(line):
+   .....:       show, views = line.split(',')
+   .....:         return (show, int(views)) 
+   .....: 
+
+In [187]: def split_show_channel(line):
+   .....:       show, channel=line.split(',')
+   .....:       if(channel == 'BAT'):
+   .....:                       return (show, channel)
+   .....:     
+
+In [188]: def extract_channel_views(show_views_channel):
+   .....:         _, (channel, views) = show_views_channel
+   .....:         return channel, views
+   .....:       
+
+In [189]:       
+
+In [189]: def sum_channel_views(a, b):
+   .....:       return int(a) + int(b)
+   .....: 
+
+In [190]: show_views = show_views_file.map(split_show_views)
+
+In [191]: show_channel = show_channel_file.filter(split_show_channel).map(split_show_channel)
+
+In [192]: channel_views = joined_dataset.map(extract_channel_views)
+
+In [193]: channel_views.reduceByKey(sum_channel_views).collect()
+Out[193]:                                                                       
+[(u'XYZ', 5208016),
+ (u'DEF', 8032799),
+ (u'CNO', 3941177),
+ (u'BAT', 5099141),
+ (u'NOX', 2583583),
+ (u'CAB', 3940862),
+ (u'BOB', 2591062),
+ (u'ABC', 1115974),
+ (u'MAN', 6566187)]
+
+In [194]: 
+
+
+
+
+
+
