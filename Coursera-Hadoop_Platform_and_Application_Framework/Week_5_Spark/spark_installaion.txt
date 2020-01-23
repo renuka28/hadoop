@@ -1,0 +1,16 @@
+following command does not work
+
+sudo easy_install ipython==1.2.1
+
+Steps to install ipython 1.2.1
+
+1) download the ipython-1.2.1.tar.gz from https://pypi.org/simple/ipython/ direct link (https://files.pythonhosted.org/packages/42/a0/204ecd8b4e76f3399b51addbd39980ec5fa90275ff853879e25508030922/ipython-1.2.1.tar.gz#sha256=c27aeae9b8e5c4a2d28ba0f04b879216d6f96f36380cd465a823b1efb0595874) 
+2) extract the ipython to a directory. I extracted to /home/cloudera/ipython-1.2.1
+3) run command 
+	sudo easy_install /home/cloudera/ipython-1.2.1 
+4) run
+	PYSPARK_DRIVER_PYTHON=ipython pyspark
+5) verify version by typing in spark console 
+	sc.version
+6) i got 
+	Out[1]: u'1.6.0'
